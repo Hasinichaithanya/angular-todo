@@ -1,8 +1,9 @@
 import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { JsonPipe } from '@angular/common';
-import { LocalStorageService } from '../../services/local-storage-service';
+import { LocalStorageService } from '../../services/todo-service';
 import { LOCAL_STORAGE_KEYS } from '../../constants/constants';
 import { TaskItemComponent } from '../task-item-component/task-item-component';
+import { Task } from '../../interface/task';
 
 @Component({
   selector: 'app-task-list-component',
@@ -11,48 +12,57 @@ import { TaskItemComponent } from '../task-item-component/task-item-component';
   styleUrl: './task-list-component.scss',
 })
 export class TaskListComponent {
-  @Input() searchedTasks: any;
+  @Input() searchedTasks: Task[] | any;
+  allTasks!: any;
   allactive: boolean = true;
   todoactive!: boolean;
   progressactive!: boolean;
   completedoactive!: boolean;
   activeTab: string = 'all';
   constructor(private cdf: ChangeDetectorRef) {
-    this.changeTab('all');
+    console.info(this.searchedTasks);
   }
-  changeTab(tab: string) {
-    // console.log('change tab');
-    this.activeTab = tab;
-    if (tab == 'all') {
+
+  ngOnChanges() {
+    this.allTasks = this.searchedTasks;
+    console.info(this.allTasks);
+    console.info('on changes');
+  }
+  changeTab() {
+    console.info('change tab', this.activeTab);
+    // this.activeTab = tab;
+    this.searchedTasks = this.allTasks;
+    if (this.activeTab == 'all') {
       this.allactive = true;
       this.completedoactive = false;
       this.progressactive = false;
       this.todoactive = false;
       return this.searchedTasks;
     }
-    this.searchedTasks = this.searchedTasks;
-    if (tab == 'to-do') {
+    this.searchedTasks = this.searchedTasks.filter(
+      (task: Task) => task.status == this.activeTab
+    );
+    console.info(this.searchedTasks);
+
+    if (this.activeTab == 'to-do') {
       this.todoactive = true;
       this.allactive = false;
       this.completedoactive = false;
       this.progressactive = false;
-    } else if (tab == 'in-progress') {
+    } else if (this.activeTab == 'in-progress') {
       this.progressactive = true;
       this.allactive = false;
       this.completedoactive = false;
       this.todoactive = false;
-    } else if (tab == 'completed') {
+    } else if (this.activeTab == 'completed') {
       this.completedoactive = true;
       this.allactive = false;
       this.progressactive = false;
       this.todoactive = false;
     }
-
-    // this.searchedTasks = this.searchedTasks.filter(
-    //   (task: any) => {
-    //     return task.status == 'completed'
-    //   }
-    // );
-    // console.info(this.searchedTasks);
+  }
+  setActiveTab(tab: string) {
+    this.activeTab = tab;
+    this.changeTab();
   }
 }

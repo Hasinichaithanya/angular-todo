@@ -6,9 +6,10 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { CommonModule, JsonPipe } from '@angular/common';
-import { LocalStorageService } from '../../services/local-storage-service';
+import { LocalStorageService } from '../../services/todo-service';
 import { LOCAL_STORAGE_KEYS } from '../../constants/constants';
 import { Router } from '@angular/router';
+import { Task } from '../../interface/task';
 
 @Component({
   selector: 'app-task-item-component',
@@ -17,21 +18,22 @@ import { Router } from '@angular/router';
   templateUrl: './task-item-component.html',
   styleUrl: './task-item-component.scss',
 })
-export class TaskItemComponent implements OnChanges {
+// implements OnChanges
+export class TaskItemComponent {
   // @Input() taskDetails: any = '';
-  @Input() activeTab: string = '';
-  @Input() searchedTasks: any[] = [];
+  // @Input() activeTab: string = '';
+  @Input() task: any = '';
   constructor(private ls: LocalStorageService, private router: Router) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
-    console.info(this.activeTab, changes, 'task-item-comp');
+  // ngOnChanges(changes: SimpleChanges): void {
+  //   console.info(this.activeTab, changes, 'task-item-comp');
 
-    if (changes['searchedTasks'] && this.activeTab != 'all') {
-      this.searchedTasks = this.searchedTasks.filter(
-        (val: any) => val.status == this.activeTab
-      );
-    }
-  }
+  //   if (changes['searchedTasks'] && this.activeTab != 'all') {
+  //     this.searchedTasks = this.searchedTasks.filter(
+  //       (val: any) => val.status == this.activeTab
+  //     );
+  //   }
+  // }
 
   onDelete(id: string) {
     this.ls.deleteTask(id);

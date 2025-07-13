@@ -1,22 +1,31 @@
 {
   "tasks": [
     {
-      "id": "c882",
-      "title": "Hi",
+      "title": "Weather app",
       "description": "complete the weather app with all functionlaities",
-      "status": "to-do"
+      "due_date": "2025-07-09",
+      "status": "to-do",
+      "id": "1f43"
     },
     {
-      "id": "bdb5",
-      "title": "Hiii",
-      "description": "complete the todo app with all functionlaities",
-      "status": "to-do"
+      "title": "user form",
+      "description": "complete the user app with all functionlaities",
+      "due_date": "2025-07-15",
+      "status": "in-progress",
+      "id": "a059"
     },
     {
-      "id": "d305",
-      "title": "hi",
-      "description": "complete the todo app with all functionlaities",
-      "status": "to-do"
+      "title": "hin",
+      "description": "complete the weather app with all functionlaities",
+      "status": "completed",
+      "id": "29e7"
+    },
+    {
+      "id": "39a3",
+      "title": "toto",
+      "description": "add routing to the projects",
+      "status": "to-do",
+      "due_date": null
     }
   ]
 }

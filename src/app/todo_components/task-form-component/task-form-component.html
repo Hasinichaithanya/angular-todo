@@ -5,7 +5,7 @@
       id="title"
       type="text"
       formControlName="title"
-      placeholder="Title..."
+      placeholder="Title...minimum 3 characters"
     />
   </div>
   <div>
@@ -14,13 +14,18 @@
       formControlName="description"
       id="description"
       type="text"
-      placeholder="Description..."
+      placeholder="Description...required!"
     />
   </div>
   <div>
     <label htmlFor="due_date">Due date: </label>
     <div>
-      <input id="due_date" formControlName="due_date" type="date" />
+      <input
+        id="due_date"
+        formControlName="due_date"
+        type="date"
+        min="{{ date }}"
+      />
     </div>
   </div>
   <button type="submit" [disabled]="!task.valid">Add task</button>

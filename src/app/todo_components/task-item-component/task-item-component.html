@@ -1,0 +1,12 @@
+<div class="task-item">
+  <div class="task-details">
+    <h3>{{ task.title }}</h3>
+    <hr />
+    <p>{{ task.description }}</p>
+    <span *ngIf="task.due_date"><b>Due:</b> {{ task.due_date }}</span>
+  </div>
+  <div class="btns-container">
+    <button (click)="onUpdate(task.id)" class="update-btn">update</button>
+    <button (click)="onDelete(task.id)" class="delete-btn">delete</button>
+  </div>
+</div>

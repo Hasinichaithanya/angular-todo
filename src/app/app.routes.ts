@@ -1,14 +1,13 @@
 import { Routes } from '@angular/router';
-import { UpdateTaskComponent } from './components/update-task-component/update-task-component';
-import { LandingPageComponent } from './components/landing-page-component/landing-page-component';
-
+import { LandingPageComponent } from './todo_components/landing-page-component/landing-page-component';
+import { UpdateTaskComponent } from './todo_components/update-task-component/update-task-component';
 export const routes: Routes = [
-  {
-    path: 'update-task/:id',
-    component: UpdateTaskComponent,
-  },
   {
     path: '',
     component: LandingPageComponent,
+  },
+  {
+    path: 'update-task/:id',
+    component: UpdateTaskComponent,
   },
 ];

@@ -18,4 +18,22 @@
   margin-top: 15px;
   align-items: center;
   justify-content: flex-end;
+  align-self: flex-end;
+}
+button {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: none;
+  font-weight: bold;
+}
+.update-btn {
+  color: rgb(20, 17, 210);
+}
+.delete-btn {
+  color: red;
+}
+hr {
+  color: rgb(20, 17, 210);
+  width: 300px;
 }

@@ -1,5 +1,5 @@
 import { Component, output, input, Output, EventEmitter } from '@angular/core';
-import { LocalStorageService } from '../../services/local-storage-service';
+import { LocalStorageService } from '../../services/todo-service';
 import { LOCAL_STORAGE_KEYS } from '../../constants/constants';
 
 @Component({
@@ -12,15 +12,12 @@ export class SearchComponent {
   searchedTasks = output();
   tasksList: any;
   constructor(private ls: LocalStorageService) {
-    this.tasksList = this.ls.getTasks();
+    this.ls.tasksList$.subscribe((resp) => (this.tasksList = resp));
   }
 
   searchTasks(search: any) {
     let value: string = search.target.value;
     this.searchedTasks.emit(
-      // this.tasksList.filter((task: any) =>
-      //   task.title.toLowerCase().includes(value.toLowerCase())
-      // ) ||
       this.tasksList.filter(
         (task: any) =>
           task.description.toLowerCase().includes(value.toLowerCase()) ||
