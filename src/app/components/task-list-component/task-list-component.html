@@ -1,0 +1,21 @@
+<!-- {{ searchedTasksList | json }} -->
+<div class="task-list-container">
+  <h1>My Tasks</h1>
+  <div class="tabs-container">
+    <button [class.active]="allactive" (click)="changeTab('all')">All</button>
+    <button [class.active]="todoactive" (click)="changeTab('to-do')">
+      Todo
+    </button>
+    <button [class.active]="progressactive" (click)="changeTab('in-progress')">
+      In Progress
+    </button>
+    <button [class.active]="completedoactive" (click)="changeTab('completed')">
+      Completed
+    </button>
+  </div>
+  <app-task-item-component
+    class="tasks-container"
+    [activeTab]="activeTab"
+    [searchedTasks]="searchedTasks"
+  ></app-task-item-component>
+</div>

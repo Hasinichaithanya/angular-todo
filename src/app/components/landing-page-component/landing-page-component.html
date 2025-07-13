@@ -1,0 +1,13 @@
+<nav>
+  <h2>Task Tracker</h2>
+  <app-search-component (searchedTasks)="searchedTasksFunc($event)" />
+</nav>
+<app-task-form-component (isTaskAdded)="taskAdded()" />
+<div *ngIf="searchedTasksList.length == 0" class="no-tasks">
+  <h1>No Tasks!</h1>
+</div>
+
+<app-task-list-component
+  *ngIf="searchedTasksList.length > 0"
+  [searchedTasks]="searchedTasksList"
+/>

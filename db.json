@@ -1,0 +1,22 @@
+{
+  "tasks": [
+    {
+      "id": "c882",
+      "title": "Hi",
+      "description": "complete the weather app with all functionlaities",
+      "status": "to-do"
+    },
+    {
+      "id": "bdb5",
+      "title": "Hiii",
+      "description": "complete the todo app with all functionlaities",
+      "status": "to-do"
+    },
+    {
+      "id": "d305",
+      "title": "hi",
+      "description": "complete the todo app with all functionlaities",
+      "status": "to-do"
+    }
+  ]
+}

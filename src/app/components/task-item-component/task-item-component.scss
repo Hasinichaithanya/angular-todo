@@ -1,0 +1,21 @@
+.task-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 300px;
+  // max-width: 80%;
+  background-color: aliceblue;
+  border-radius: 20px;
+  padding: 20px;
+}
+.task-details {
+  display: flex;
+  flex-direction: column;
+}
+.btns-container {
+  display: flex;
+  margin-top: 15px;
+  align-items: center;
+  justify-content: flex-end;
+}
