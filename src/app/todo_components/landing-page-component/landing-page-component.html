@@ -1,13 +1,54 @@
 <nav>
   <h2>Task Tracker</h2>
-  <app-search-component (searchedTasks)="searchedTasksFunc($event)" />
+  <app-search-component (searchedValue)="searchTasksFunc($event)" />
+  <span></span>
 </nav>
-<app-task-form-component />
-<div *ngIf="searchedTasksList.length == 0" class="no-tasks">
+
+<app-task-form-component (isTaskAdded)="taskAdded()" />
+
+<div *ngIf="allTasks.length == 0 && !error && !isLoading" class="no-tasks">
   <h1>No Tasks!</h1>
 </div>
 
+<div *ngIf="isLoading == true" class="align-center">
+  <app-loader />
+</div>
+<div *ngIf="error && !isLoading" class="no-tasks">
+  <h1>{{ error }}</h1>
+</div>
+<div *ngIf="!error && !isLoading" class="heading-tabs-container">
+  <h1 *ngIf="allTasks.length > 0">My Tasks</h1>
+
+  <div class="tabs-container" *ngIf="allTasks.length > 0">
+    <button [class.active]="allactive" (click)="setActiveTab('all')">
+      All
+    </button>
+    <button [class.active]="todoactive" (click)="setActiveTab('to-do')">
+      Todo
+    </button>
+    <button
+      [class.active]="progressactive"
+      (click)="setActiveTab('in-progress')"
+    >
+      In Progress
+    </button>
+    <button
+      [class.active]="completedoactive"
+      (click)="setActiveTab('completed')"
+    >
+      Completed
+    </button>
+  </div>
+</div>
+
 <app-task-list-component
-  *ngIf="searchedTasksList.length > 0"
+  *ngIf="searchedTasksList.length > 0 && !error && !isLoading"
   [searchedTasks]="searchedTasksList"
 />
+
+<div
+  *ngIf="searchedTasksList.length == 0 && !error && !isLoading"
+  class="no-tasks"
+>
+  <h1>No Tasks!</h1>
+</div>

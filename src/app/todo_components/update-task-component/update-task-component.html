@@ -1,4 +1,4 @@
-<div class="form-container">
+<div *ngIf="!error && !isLoading" class="form-container">
   <h1>Update the Task</h1>
 
   <form [formGroup]="task" (ngSubmit)="handleSubmit()">
@@ -22,7 +22,12 @@
     </div>
     <div class="input-container">
       <label htmlFor="due_date">Due date: </label>
-      <input id="due_date" formControlName="due_date" type="date" />
+      <input
+        id="due_date"
+        formControlName="due_date"
+        type="date"
+        min="{{ date }}"
+      />
     </div>
     <div class="input-container">
       <label htmlFor="status">Status: </label>
@@ -35,3 +40,8 @@
     <button type="submit" [disabled]="!task.valid">Update task</button>
   </form>
 </div>
+
+<div *ngIf="error" class="align-center">
+  <h3>{{ error }}</h3>
+</div>
+<div *ngIf="isLoading"><app-loader /></div>

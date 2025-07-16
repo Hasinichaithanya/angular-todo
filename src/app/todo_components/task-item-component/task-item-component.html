@@ -4,9 +4,13 @@
     <hr />
     <p>{{ task.description }}</p>
     <span *ngIf="task.due_date"><b>Due:</b> {{ task.due_date }}</span>
+    <span><b>Status: </b>{{ task.status }}</span>
   </div>
   <div class="btns-container">
     <button (click)="onUpdate(task.id)" class="update-btn">update</button>
-    <button (click)="onDelete(task.id)" class="delete-btn">delete</button>
+    <button (click)="onDelete(task.id)" matButton="elevated" class="delete-btn">
+      delete
+    </button>
   </div>
 </div>
+<div *ngIf="error"></div>

@@ -30,3 +30,7 @@
   </div>
   <button type="submit" [disabled]="!task.valid">Add task</button>
 </form>
+
+<div *ngIf="error" class="align-center">
+  <h3>{{ error }}</h3>
+</div>

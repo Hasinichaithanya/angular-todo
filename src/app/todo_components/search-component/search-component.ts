@@ -1,6 +1,7 @@
 import { Component, output, input, Output, EventEmitter } from '@angular/core';
-import { LocalStorageService } from '../../services/todo-service';
+import { TodoService } from '../../services/todo-service';
 import { LOCAL_STORAGE_KEYS } from '../../constants/constants';
+import { Task } from '../../interface/task';
 
 @Component({
   selector: 'app-search-component',
@@ -9,20 +10,17 @@ import { LOCAL_STORAGE_KEYS } from '../../constants/constants';
   styleUrl: './search-component.scss',
 })
 export class SearchComponent {
-  searchedTasks = output();
-  tasksList: any;
-  constructor(private ls: LocalStorageService) {
+  @Output() searchedValue = new EventEmitter<string>();
+  tasksList: Task[] = [];
+  constructor(private ls: TodoService) {
     this.ls.tasksList$.subscribe((resp) => (this.tasksList = resp));
   }
-
-  searchTasks(search: any) {
-    let value: string = search.target.value;
-    this.searchedTasks.emit(
-      this.tasksList.filter(
-        (task: any) =>
-          task.description.toLowerCase().includes(value.toLowerCase()) ||
-          task.title.toLowerCase().includes(value.toLowerCase())
-      )
-    );
+  searchTasks(search: Event) {
+    let value: string = (search.target as HTMLInputElement).value;
+    this.searchedValue.emit(value);
+  }
+  emitEmpty(search: Event) {
+    console.log('on close');
+    this.searchedValue.emit('');
   }
 }
